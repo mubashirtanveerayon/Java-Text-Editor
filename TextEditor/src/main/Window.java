@@ -5,6 +5,7 @@
  */
 package main;
 
+import com.sun.glass.events.KeyEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -76,12 +77,9 @@ public class Window extends javax.swing.JFrame {
         filename.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/file.png"))); // NOI18N
         filename.setText("File : ");
 
+        field.setEditable(false);
         field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        field.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                fieldKeyTyped(evt);
-            }
-        });
+        field.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,7 +151,7 @@ public class Window extends javax.swing.JFrame {
                 Scanner sc = new Scanner(fileChooser.getSelectedFile());
                 
                 while(sc.hasNext()){
-                    text+=sc.next()+"\n";
+                    text+=sc.nextLine()+"\n";
                 }
                 
             }catch(Exception ex){
@@ -163,10 +161,6 @@ public class Window extends javax.swing.JFrame {
             field.setText(path);
         }
     }//GEN-LAST:event_openbtnActionPerformed
-
-    private void fieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldKeyTyped
-        evt.consume();
-    }//GEN-LAST:event_fieldKeyTyped
 
     /**
      * @param args the command line arguments
